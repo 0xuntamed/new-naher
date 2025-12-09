@@ -1228,11 +1228,65 @@ footer {
         font-size: 2rem;
     }
 
-    .services-grid,
-    .clients-grid,
-    .projects-grid,
     .team-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .carousel-container {
+        position: relative;
+    }
+
+    .carousel-button {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        z-index: 1;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .carousel-button.prev {
+        left: -10px;
+    }
+
+    .carousel-button.next {
+        right: -10px;
+    }
+
+    .has-carousel .services-grid,
+    .has-carousel .approvals-container,
+    .has-carousel .clients-grid,
+    .has-carousel .projects-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        gap: 1rem;
+    }
+
+    .has-carousel .services-grid::-webkit-scrollbar,
+    .has-carousel .approvals-container::-webkit-scrollbar,
+    .has-carousel .clients-grid::-webkit-scrollbar,
+    .has-carousel .projects-grid::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+
+    .has-carousel .service-card,
+    .has-carousel .approval-badge,
+    .has-carousel .client-card,
+    .has-carousel .project-card {
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        width: 80%;
     }
 
     .stats {

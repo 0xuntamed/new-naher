@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initLogoHome();
   initHeroHeading();
   initHeroSlider();
+  initCarousels();
 });
 
 // ========================================
@@ -573,6 +574,51 @@ function throttle(func, limit) {
       setTimeout(() => (inThrottle = false), limit);
     }
   };
+}
+
+// ========================================
+// CAROUSEL
+// ========================================
+
+function initCarousels() {
+    if (window.innerWidth > 768) {
+        return;
+    }
+
+    const carousels = document.querySelectorAll('.has-carousel');
+
+    carousels.forEach(carouselSection => {
+        const grid = carouselSection.querySelector('.services-grid, .approvals-container, .clients-grid, .projects-grid');
+        if (!grid) return;
+
+        const container = document.createElement('div');
+        container.className = 'carousel-container';
+
+        grid.parentNode.insertBefore(container, grid);
+        container.appendChild(grid);
+
+        const prevButton = document.createElement('button');
+        prevButton.className = 'carousel-button prev';
+        prevButton.innerHTML = '&lt;';
+        prevButton.setAttribute('aria-label', 'Previous');
+        container.appendChild(prevButton);
+
+        const nextButton = document.createElement('button');
+        nextButton.className = 'carousel-button next';
+        nextButton.innerHTML = '&gt;';
+        nextButton.setAttribute('aria-label', 'Next');
+        container.appendChild(nextButton);
+
+        const scrollAmount = grid.offsetWidth * 0.8; 
+
+        prevButton.addEventListener('click', () => {
+            grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        nextButton.addEventListener('click', () => {
+            grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+    });
 }
 
 // ========================================
