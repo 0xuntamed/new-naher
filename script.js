@@ -597,26 +597,29 @@ function initCarousels() {
         grid.parentNode.insertBefore(container, grid);
         container.appendChild(grid);
 
-        const prevButton = document.createElement('button');
-        prevButton.className = 'carousel-button prev';
-        prevButton.innerHTML = '&lt;';
-        prevButton.setAttribute('aria-label', 'Previous');
-        container.appendChild(prevButton);
+        const scrollAmount = grid.offsetWidth * 0.8;
 
-        const nextButton = document.createElement('button');
-        nextButton.className = 'carousel-button next';
-        nextButton.innerHTML = '&gt;';
-        nextButton.setAttribute('aria-label', 'Next');
-        container.appendChild(nextButton);
+        let autoScroll = setInterval(() => {
+            if (grid.scrollLeft + grid.clientWidth >= grid.scrollWidth) {
+                grid.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }, 3000); // Change slide every 3 seconds
 
-        const scrollAmount = grid.offsetWidth * 0.8; 
-
-        prevButton.addEventListener('click', () => {
-            grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        // Optional: Pause scrolling on hover
+        grid.addEventListener('mouseenter', () => {
+            clearInterval(autoScroll);
         });
 
-        nextButton.addEventListener('click', () => {
-            grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        grid.addEventListener('mouseleave', () => {
+            autoScroll = setInterval(() => {
+                if (grid.scrollLeft + grid.clientWidth >= grid.scrollWidth) {
+                    grid.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 3000);
         });
     });
 }
