@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initHeroHeading();
   initHeroSlider();
   initCarousels();
+  updateResponsiveElements();
   
 });
 
@@ -62,6 +63,94 @@ function initHeroSlider() {
         backgrounds[currentIndex].classList.add('active');
     }, 2000);
 }
+function updateResponsiveElements() {
+    const elements = document.querySelectorAll('.responsive-hide');
+    if (!elements.length) return;
+
+    const isMobile = window.innerWidth <= 768;
+    const mobileImages = [
+        './dubai-screen.png',
+        './dewa-logo.jpeg',
+        './fewa-logo-resize.jpeg',
+        './clients01.jpg',
+        './clients02.jpg',
+        './clients03.jpg',
+        './clients04.jpg',
+        
+    ];
+    const desktopImages = [
+        './photo-collage.png.png',
+        './dewa-image.png',
+        './fewa-logo.jpeg',
+        './01.png',
+        './02.png',
+        './03.png',
+        './04.png'
+        
+    ];
+
+    elements.forEach((element, index) => {
+        // Get or create image element
+        let img = element.querySelector('img');
+        if (!img) {
+            img = document.createElement('img');
+            img.style.Width = '100%';
+            img.style.height = '80%';
+            img.style.objectFit = 'contain';
+            img.style.display = 'block';
+            element.innerHTML = ''; // Clear existing content
+            element.appendChild(img);
+        }
+
+        // Set the appropriate image based on screen size
+        // Use modulo to cycle through images if there are more elements than images
+        if (isMobile) {
+            const imgIndex = index % mobileImages.length;
+            img.src = mobileImages[imgIndex];
+            img.style.width = '50%';  // Slightly smaller than container
+    img.style.maxHeight = '90vh';  // Limit height to viewport
+    img.style.objectFit = 'contain';  // Show full image without cropping
+    img.style.margin = '0 auto';  // Center horizontally
+    element.style.padding = '10px';
+            
+        } else {
+            const imgIndex = index % desktopImages.length;
+            img.src = desktopImages[imgIndex];
+        }
+
+        // Center the image
+        // Center the image and make it fit the screen
+element.style.display = 'flex';
+element.style.justifyContent = 'center';
+element.style.alignItems = 'center';
+element.style.width = '100vw';    // Full viewport width
+element.style.height = '100vh';   // Full viewport height
+element.style.overflow = 'hidden'; // Prevent scrollbars
+element.style.position = 'fixed';  // Fixed positioning
+element.style.top = '0';
+element.style.left = '0';
+
+// Update image styles
+img.style.width = '80%';
+img.style.height = '50%';
+img.style.objectFit = 'cover';    // Cover the entire area
+img.style.objectPosition = 'center'; // Center the image
+    });
+}
+
+// Run on page load and when window is resized
+document.addEventListener('DOMContentLoaded', updateResponsiveElements);
+window.addEventListener('resize', updateResponsiveElements);
+
+// Run on page load and when window is resized
+document.addEventListener('DOMContentLoaded', updateResponsiveElement);
+window.addEventListener('resize', updateResponsiveElement);
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', updateResponsiveElement);
+
+// Also run when window is resized
+window.addEventListener('resize', updateResponsiveElement);
 
 // ========================================
 // LOGO HOME BUTTON
@@ -114,6 +203,7 @@ function initHeaderScroll() {
     { passive: true }
   );
 }
+
 
 // ========================================
 // MOBILE MENU
