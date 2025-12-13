@@ -69,9 +69,9 @@ function updateResponsiveElements() {
 
     const isMobile = window.innerWidth <= 768;
     const mobileImages = [
-        './dubai-screen.png',
-        './dewa-logo.jpeg',
-        './fewa-logo-resize.jpeg',
+        './cropped-dubai.png',
+        './cropped-dewa.png',
+        './cropped-fewa.png',
         './clients01.jpg',
         './clients02.jpg',
         './clients03.jpg',

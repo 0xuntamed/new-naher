@@ -215,8 +215,8 @@ nav a:hover {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 85%;
+    height: 85%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -228,7 +228,7 @@ nav a:hover {
 
 @media (max-width: 768px) {
     .hero {
-        min-height: 300vh;
+        min-height: 250vh;
         padding: 6rem 1rem 4rem;
         margin-top: 0;
         background-size: contain;  /* Show full image without cropping */
@@ -238,19 +238,19 @@ nav a:hover {
     }
 
     .hero-bg {
-    background-size: cover;
-    background-position: right  center;
+    background-size: auto 100%;
+    background-position: center  center;
     background-attachment: fixed;
     min-height: 100vh;
-    max-width: 90% !important;          /* Limit width with some margin */
-        max-height: 100vh !important;        /* Limit height to viewport */
+    max-width: 100% !important;          /* Limit width with some margin */
+        max-height: 75% !important;        /* Limit height to viewport */
         width: 80vh !important;             /* Maintain aspect ratio */
-        height: auto !important;            /* Maintain aspect ratio */
-        object-fit: cover;                /* Show full image */
+        height: 85% !important;            /* Maintain aspect ratio */
+        object-fit: contain;                /* Show full image */
         margin: 0 auto;                     /* Center horizontally */
         display: block;
-    width:50%;
-    height: 70%;
+    width:100%;
+    height: 85%;
     position: absolute;
     top: 0;
     left: 0;
@@ -290,7 +290,7 @@ nav a:hover {
 
 @media (min-width: 2560px) {
     .hero-bg {
-        background-size: 100% auto;
+        background-size: cover;
         background-position: center center;
     }
 }
