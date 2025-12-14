@@ -143,14 +143,14 @@ document.addEventListener('DOMContentLoaded', updateResponsiveElements);
 window.addEventListener('resize', updateResponsiveElements);
 
 // Run on page load and when window is resized
-document.addEventListener('DOMContentLoaded', updateResponsiveElement);
-window.addEventListener('resize', updateResponsiveElement);
+// document.addEventListener('DOMContentLoaded', updateResponsiveElement);
+// window.addEventListener('resize', updateResponsiveElement);
 
-// Run on page load
-document.addEventListener('DOMContentLoaded', updateResponsiveElement);
+// // Run on page load
+// document.addEventListener('DOMContentLoaded', updateResponsiveElement);
 
-// Also run when window is resized
-window.addEventListener('resize', updateResponsiveElement);
+// // Also run when window is resized
+// window.addEventListener('resize', updateResponsiveElement);
 
 // ========================================
 // LOGO HOME BUTTON
